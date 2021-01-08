@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Layout from '../components/Layout'
 import axios from 'axios';
+import Link from 'next/link'
 
 
 // PROPS IS PASSED IN FROM THE ASYNC FUNCTION WHIC IS HOW THE IFO FROM THE API GETS INTO THE HTML
@@ -36,10 +37,11 @@ export async function getStaticProps(){
   }
 }
 
-function PreviosTen({ comicNum }){
+function PreviosTen(props){
   // YOU CAN ENTER NORMAL JAVASCRIPT IN BETWEEN THE FUNCTION DECLARATION AND THE RETURN
+  const currentComic = props.comicNumber;
   const comics = [];
-  const num = comicNum -1;
+  const num = currentComic -1;
   for (let n = num; n > num - 10; n--)
     comics.push(n)
   return(
