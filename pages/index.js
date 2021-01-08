@@ -38,15 +38,20 @@ export async function getStaticProps(){
 
 function PreviosTen({ comicNum }){
   // YOU CAN ENTER NORMAL JAVASCRIPT IN BETWEEN THE FUNCTION DECLARATION AND THE RETURN
-  const nums = []
+  const comics = [];
   const num = comicNum -1;
   for (let n = num; n > num - 10; n--)
-    nums.push(n)
+    comics.push(n)
   return(
-    <div>
-      <h2>Previous 10</h2>
-      <p>{JSON.stringify(nums)}</p>
-      
-    </div>
+    <footer>
+            <h2> Previous {comics.length}</h2>
+            <ul>
+                {comics.map(num => (
+                    <Link href="/num/[id].js" as={`/num/${num}`} key={num}>
+                        <a> #{num}</a>
+                    </Link>
+                ))}
+            </ul>
+        </footer>
   );
 }

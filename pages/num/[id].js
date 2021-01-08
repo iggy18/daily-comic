@@ -9,3 +9,13 @@ export default function ComicDetail(props){
     );
 }
 
+export async function getServerSideProps(context){
+    const num = context.query.id;
+    const response = await fetch('http://xkcd.com/${num}/info.0.json')
+    const data = await response.json();
+    return {
+        props: {
+            comic: data
+        },
+    }
+}
